@@ -55,8 +55,8 @@ export default function CirqaHomePage() {
       />
 
       {/* 2. La Experiencia */}
-      <section className="paper-texture-rice flex flex-col justify-center bg-white px-5 py-16 md:px-14 md:py-28 xl:px-24 2xl:px-40">
-        <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 items-center gap-12 lg:grid-cols-12">
+      <section className="paper-texture-rice flex flex-col justify-center bg-white px-5 py-16 md:px-10 md:py-24 lg:px-14">
+        <div className="mx-auto grid w-full max-w-[1800px] grid-cols-1 items-center gap-12 lg:grid-cols-12">
           <div className="space-y-4 lg:col-span-5">
             <p className="text-[11px] uppercase tracking-[0.26em] text-[#6e6a65]">
               LA EXPERIENCIA
@@ -132,8 +132,8 @@ export default function CirqaHomePage() {
       </section>
 
       {/* 4. Nuestras Habitaciones */}
-      <section className="bg-[#f9f8f4] px-6 py-16 md:px-14 md:py-28 xl:px-24">
-        <div className="mx-auto max-w-[1320px] space-y-16">
+      <section className="bg-[#f9f8f4] px-5 py-16 md:px-10 md:py-24 lg:px-14">
+        <div className="mx-auto w-full max-w-[1800px] space-y-16">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
             <div className="overflow-hidden lg:col-span-7">
               <img
@@ -210,8 +210,8 @@ export default function CirqaHomePage() {
       </section>
 
       {/* 5. Nuestra Carta */}
-      <section className="bg-white px-5 py-16 md:px-14 md:py-28 xl:px-24">
-        <div className="mx-auto max-w-[1320px] space-y-12">
+      <section className="bg-white px-5 py-16 md:px-10 md:py-24 lg:px-14">
+        <div className="mx-auto w-full max-w-[1800px] space-y-12">
           <div className="mx-auto flex max-w-2xl flex-col items-center space-y-4 text-center">
             <p className="text-[11px] uppercase tracking-[0.26em] text-[#6e6a65]">
               SALÓN &amp; TERRAZA
@@ -294,8 +294,8 @@ export default function CirqaHomePage() {
       </section>
 
       {/* 7. Servicios Exclusivos (Interactive Tabs) */}
-      <section className="paper-texture-gray bg-[#f8f7f4] px-5 py-16 md:px-14 md:py-28 xl:px-24">
-        <div className="mx-auto grid max-w-[1320px] grid-cols-1 items-center gap-12 lg:grid-cols-12">
+      <section className="paper-texture-gray bg-[#f8f7f4] px-5 py-16 md:px-10 md:py-24 lg:px-14">
+        <div className="mx-auto grid w-full max-w-[1800px] grid-cols-1 items-center gap-12 lg:grid-cols-12">
           <div className="space-y-5 lg:col-span-6">
             <p className="text-[11px] uppercase tracking-[0.26em] text-[#6e6a65]">
               HOSPITALIDAD A TU MEDIDA
@@ -356,8 +356,8 @@ export default function CirqaHomePage() {
       </section>
 
       {/* 8. Gallery Carousel */}
-      <section className="overflow-x-clip bg-white px-5 py-16 md:px-14 md:py-24 xl:px-24">
-        <div className="mx-auto max-w-[1320px]">
+      <section className="overflow-x-clip bg-white px-5 py-16 md:px-10 md:py-24 lg:px-14">
+        <div className="mx-auto w-full max-w-[1800px]">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-[11px] uppercase tracking-[0.26em] text-[#6e6a65]">

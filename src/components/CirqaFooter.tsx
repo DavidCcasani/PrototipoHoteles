@@ -11,7 +11,7 @@ export function CirqaFooter() {
 
   return (
     <footer className="font-rooms-sans bg-[#222222] pt-14 pb-10 text-[#f3eee1] sm:pt-16">
-      <div className="mx-auto max-w-6xl px-5 md:px-10">
+      <div className="mx-auto w-full max-w-[1800px] px-5 md:px-10 lg:px-14">
         {/* Footer Links Grid */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div className="space-y-4">

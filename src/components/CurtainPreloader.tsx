@@ -1,17 +1,20 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { HotelLogo } from "./BrandSvgs";
 
 type Phase = "entering" | "hold" | "lifting" | "hidden";
 
 export function CurtainPreloader() {
   const pathname = usePathname();
-  const lastCompletedPathRef = useRef<string | null>(null);
+  const router = useRouter();
+
+  const [phase, setPhase] = useState<Phase>("hold");
+  const hasCompletedInitialRef = useRef(false);
+  const pendingPathRef = useRef<string | null>(null);
   const timersRef = useRef<number[]>([]);
   const rafRef = useRef<number | null>(null);
-  const [phase, setPhase] = useState<Phase>("hold");
 
   const clearScheduled = () => {
     timersRef.current.forEach((id) => window.clearTimeout(id));
@@ -22,32 +25,75 @@ export function CurtainPreloader() {
     }
   };
 
-  useEffect(() => {
-    clearScheduled();
-
-    const isInitialLoad = lastCompletedPathRef.current === null;
+  const getTimings = () => {
     const prefersReduced =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const fadeInMs = prefersReduced ? 80 : 280;
-    const holdMs = prefersReduced ? 120 : isInitialLoad ? 800 : 320;
-    const liftMs = prefersReduced ? 240 : 950;
-
-    const startLift = () => {
-      lastCompletedPathRef.current = pathname;
-      setPhase("lifting");
+    return {
+      fadeInMs: prefersReduced ? 80 : 320,
+      initialHoldMs: prefersReduced ? 120 : 750,
+      navHoldMs: prefersReduced ? 80 : 220,
+      liftMs: prefersReduced ? 220 : 900,
     };
+  };
 
-    if (isInitialLoad) {
-      setPhase("hold");
-      const liftTimer = window.setTimeout(startLift, holdMs);
-      const hideTimer = window.setTimeout(
-        () => setPhase("hidden"),
-        holdMs + liftMs
-      );
-      timersRef.current = [liftTimer, hideTimer];
-    } else {
+  const scheduleLift = (delayMs: number) => {
+    const { liftMs } = getTimings();
+    const liftTimer = window.setTimeout(() => {
+      hasCompletedInitialRef.current = true;
+      setPhase("lifting");
+    }, delayMs);
+    const hideTimer = window.setTimeout(() => {
+      setPhase("hidden");
+    }, delayMs + liftMs);
+    timersRef.current.push(liftTimer, hideTimer);
+  };
+
+  // Intercept internal link clicks: show curtain FIRST, then navigate
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (
+        e.defaultPrevented ||
+        e.button !== 0 ||
+        e.metaKey ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        e.altKey
+      ) {
+        return;
+      }
+
+      const target = e.target as HTMLElement | null;
+      const anchor = target?.closest("a");
+      if (!anchor) return;
+
+      const hrefAttr = anchor.getAttribute("href");
+      if (!hrefAttr || hrefAttr.startsWith("#")) return;
+      if (anchor.target && anchor.target !== "_self") return;
+      if (anchor.hasAttribute("download")) return;
+
+      let url: URL;
+      try {
+        url = new URL(anchor.href, window.location.href);
+      } catch {
+        return;
+      }
+
+      if (url.origin !== window.location.origin) return;
+      if (url.pathname === pathname) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      clearScheduled();
+
+      const targetUrl = url.pathname + url.search + url.hash;
+      const { fadeInMs } = getTimings();
+
+      // Prefetch target route right away while curtain closes
+      router.prefetch(url.pathname);
+      pendingPathRef.current = url.pathname;
+
       setPhase("entering");
       rafRef.current = window.requestAnimationFrame(() => {
         rafRef.current = window.requestAnimationFrame(() => {
@@ -55,23 +101,65 @@ export function CurtainPreloader() {
         });
       });
 
-      const liftTimer = window.setTimeout(startLift, fadeInMs + holdMs);
-      const hideTimer = window.setTimeout(
-        () => setPhase("hidden"),
-        fadeInMs + holdMs + liftMs
-      );
-      timersRef.current = [liftTimer, hideTimer];
+      const navTimer = window.setTimeout(() => {
+        router.push(targetUrl);
+      }, fadeInMs + 40);
+
+      // Safety fallback in case navigation redirects back to the same pathname
+      const safetyTimer = window.setTimeout(() => {
+        if (pendingPathRef.current !== null) {
+          pendingPathRef.current = null;
+          scheduleLift(0);
+        }
+      }, fadeInMs + 2500);
+
+      timersRef.current = [navTimer, safetyTimer];
+    };
+
+    document.addEventListener("click", handleDocumentClick, true);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick, true);
+    };
+  }, [pathname, router]);
+
+  // Handle initial load and route completion behind the closed curtain
+  useEffect(() => {
+    const { fadeInMs, initialHoldMs, navHoldMs } = getTimings();
+
+    if (!hasCompletedInitialRef.current && pendingPathRef.current === null) {
+      clearScheduled();
+      setPhase("hold");
+      scheduleLift(initialHoldMs);
+      return clearScheduled;
     }
+
+    // If this pathname change came from our intercepted click:
+    // curtain is already closed ("hold"), so lift smoothly after brief settle
+    if (pendingPathRef.current !== null) {
+      pendingPathRef.current = null;
+      clearScheduled();
+      setPhase("hold");
+      scheduleLift(navHoldMs);
+      return clearScheduled;
+    }
+
+    // Browser Back/Forward navigation
+    clearScheduled();
+    setPhase("entering");
+    rafRef.current = window.requestAnimationFrame(() => {
+      rafRef.current = window.requestAnimationFrame(() => {
+        setPhase("hold");
+      });
+    });
+    scheduleLift(fadeInMs + navHoldMs);
 
     return clearScheduled;
   }, [pathname]);
 
   const handleDismissEarly = () => {
     clearScheduled();
-    lastCompletedPathRef.current = pathname;
-    setPhase("lifting");
-    const hideTimer = window.setTimeout(() => setPhase("hidden"), 950);
-    timersRef.current = [hideTimer];
+    pendingPathRef.current = null;
+    scheduleLift(0);
   };
 
   if (phase === "hidden") return null;
@@ -87,7 +175,7 @@ export function CurtainPreloader() {
         transform: isLifting ? "translate3d(0, -100%, 0)" : "translate3d(0, 0, 0)",
         opacity: isEntering ? 0 : 1,
         transitionProperty: "transform, opacity",
-        transitionDuration: isLifting ? "950ms" : "280ms",
+        transitionDuration: isLifting ? "900ms" : "300ms",
         transitionTimingFunction: isLifting
           ? "cubic-bezier(0.65, 0, 0.35, 1)"
           : "ease-out",
@@ -101,7 +189,7 @@ export function CurtainPreloader() {
           transform: isEntering ? "scale(0.95)" : "scale(1)",
           opacity: isEntering ? 0 : 1,
           transitionProperty: "transform, opacity",
-          transitionDuration: "450ms",
+          transitionDuration: "380ms",
           transitionTimingFunction: "ease-out",
         }}
         className="flex flex-col items-center"

@@ -39,7 +39,7 @@ export function CirqaHeader() {
           scrolled ? "py-3 shadow-md" : "py-4 md:py-5"
         }`}
       >
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 md:px-10">
+        <div className="mx-auto flex w-full max-w-[1800px] items-center justify-between px-5 md:px-10 lg:px-14">
           {/* Left: Mobile Menu Spacer */}
           <div className="flex items-center gap-3 md:w-48">
             <button

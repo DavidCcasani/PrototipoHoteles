@@ -110,7 +110,7 @@ export default function CirqaServiciosPage() {
           return (
             <section
               key={service.id}
-              className="mx-auto grid max-w-[1320px] grid-cols-1 items-center gap-10 px-5 py-14 md:grid-cols-12 md:gap-14 md:px-14 md:py-20"
+              className="mx-auto grid w-full max-w-[1800px] grid-cols-1 items-center gap-10 px-5 py-14 md:grid-cols-12 md:gap-14 md:px-10 md:py-20 lg:px-14"
             >
               <div className={`space-y-4 md:col-span-6 ${imageFirst ? "md:order-2" : ""}`}>
                 <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-[#6e6a65]">

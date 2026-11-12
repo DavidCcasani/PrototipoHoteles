@@ -111,8 +111,8 @@ export default function CirqaContactosPage() {
       </section>
 
       {/* 3. Contact Details & Form */}
-      <section className="font-rooms-sans bg-white px-5 py-12 md:px-12 md:py-20 xl:px-20">
-        <div className="mx-auto grid max-w-[1320px] grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
+      <section className="font-rooms-sans bg-white px-5 py-12 md:px-10 md:py-20 lg:px-14">
+        <div className="mx-auto grid w-full max-w-[1800px] grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Left: Direct Contact Details */}
           <div className="space-y-7 lg:col-span-5">
             <div className="space-y-2">
@@ -381,8 +381,8 @@ export default function CirqaContactosPage() {
       </section>
 
       {/* 4. Contact Highlights Grid */}
-      <section className="font-rooms-sans border-t border-[#333333]/10 bg-[#f9f8f4] px-5 py-16 md:px-14 md:py-20">
-        <div className="mx-auto max-w-6xl">
+      <section className="font-rooms-sans border-t border-[#333333]/10 bg-[#f9f8f4] px-5 py-16 md:px-10 md:py-20 lg:px-14">
+        <div className="mx-auto w-full max-w-[1800px]">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-[11px] uppercase tracking-[0.26em] text-[#6e6a65]">
               SIEMPRE DISPONIBLES
@@ -417,8 +417,8 @@ export default function CirqaContactosPage() {
       </section>
 
       {/* 5. Location Map */}
-      <section className="font-rooms-sans border-t border-[#333333]/10 bg-white px-5 pt-16 pb-20 md:px-14 xl:px-24">
-        <div className="mx-auto max-w-6xl space-y-10">
+      <section className="font-rooms-sans border-t border-[#333333]/10 bg-white px-5 pt-16 pb-20 md:px-10 lg:px-14">
+        <div className="mx-auto w-full max-w-[1800px] space-y-10">
           <div className="flex flex-col items-center text-center">
             <p className="text-[11px] uppercase tracking-[0.26em] text-[#6e6a65]">
               CÓMO LLEGAR

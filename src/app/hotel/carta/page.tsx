@@ -62,10 +62,10 @@ export default function CirqaCartaPage() {
       />
 
       {/* 2. Restaurant Menu Container */}
-      <section className="paper-texture-rice font-rooms-sans bg-[#f5f2eb] px-4 py-12 md:px-10 md:py-20">
-        <div className="mx-auto max-w-5xl border border-[#333333]/20 bg-[#fcfbf8] p-3 shadow-sm md:p-5">
+      <section className="paper-texture-rice font-rooms-sans bg-[#f5f2eb] px-4 py-10 md:px-10 md:py-16 lg:px-14">
+        <div className="mx-auto w-full max-w-[1800px] border border-[#333333]/20 bg-[#fcfbf8] p-3 shadow-sm md:p-5">
           {/* Inner Double-Border Frame (Classic Printed Menu Style) */}
-          <div className="border border-[#333333]/15 px-5 py-10 sm:px-10 md:px-14 md:py-14">
+          <div className="border border-[#333333]/15 px-5 py-10 sm:px-8 md:px-12 md:py-14">
             {/* Menu Header */}
             <header className="mx-auto max-w-2xl text-center">
               <div className="mb-3 flex items-center justify-center gap-3 text-[#75706a]">
@@ -225,8 +225,8 @@ export default function CirqaCartaPage() {
                             <div
                               className={
                                 isSingleColumn
-                                  ? "mx-auto max-w-3xl space-y-5"
-                                  : "grid grid-cols-1 gap-x-10 gap-y-5 md:grid-cols-2"
+                                  ? "mx-auto grid max-w-5xl grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2"
+                                  : "grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-2 xl:grid-cols-3"
                               }
                             >
                               {group.items.map((dish) => (

@@ -62,8 +62,8 @@ export default function CirqaHabitacionesPage() {
       />
 
       {/* 2. Intro */}
-      <section className="font-rooms-sans bg-white px-5 pt-16 pb-6 text-center md:px-14 md:pt-20">
-        <div className="mx-auto max-w-2xl space-y-3">
+      <section className="font-rooms-sans bg-white px-5 pt-16 pb-6 text-center md:px-10 md:pt-20 lg:px-14">
+        <div className="mx-auto max-w-3xl space-y-3">
           <p className="text-[11px] uppercase tracking-[0.26em] text-[#6e6a65]">
             {CIRQA_ROOMS_DATA.intro.title}
           </p>
@@ -82,9 +82,9 @@ export default function CirqaHabitacionesPage() {
           <section
             key={room.id}
             id={room.id}
-            className="scroll-mt-24 px-5 py-14 md:px-12 md:py-20 xl:px-20"
+            className="scroll-mt-24 px-5 py-14 md:px-10 md:py-20 lg:px-14"
           >
-            <div className="mx-auto grid max-w-[1320px] grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+            <div className="mx-auto grid w-full max-w-[1800px] grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
               {/* Left: Image with diagonal index indicator */}
               <div className="relative pl-8 sm:pl-11 lg:col-span-7">
                 <div
@@ -179,8 +179,8 @@ export default function CirqaHabitacionesPage() {
       </div>
 
       {/* 4. Servicios Exclusivos */}
-      <section className="font-rooms-sans border-t border-[#333333]/10 bg-[#f9f8f4] px-5 py-16 md:px-14 md:py-24">
-        <div className="mx-auto max-w-6xl">
+      <section className="font-rooms-sans border-t border-[#333333]/10 bg-[#f9f8f4] px-5 py-16 md:px-10 md:py-24 lg:px-14">
+        <div className="mx-auto w-full max-w-[1800px]">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-[11px] uppercase tracking-[0.26em] text-[#6e6a65]">
               INCLUIDOS EN TU ESTADÍA
