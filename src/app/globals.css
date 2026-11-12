@@ -1,0 +1,290 @@
+@import "tailwindcss";
+@import "yet-another-react-lightbox/styles.css";
+
+@font-face {
+  font-family: "Canela Regular";
+  src: url("/fonts/andean/canela-regular.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Everett Light";
+  src: url("/fonts/andean/everett-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Everett Regular";
+  src: url("/fonts/andean/everett-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arno Pro";
+  src: url("/fonts/cirqa/arno-pro-display.woff2") format("woff2");
+  font-weight: 300 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arno Pro Light";
+  src: url("/fonts/cirqa/arno-pro-display-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Carlito";
+  src: url("/fonts/cirqa/carlito-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-andean-crema-10: #f8f7f5;
+  --color-andean-crema-50: #f5f3f0;
+  --color-andean-crema-100: #f4f0ee;
+  --color-andean-crema-150: #f0e9e4;
+  --color-andean-crema-200: #e3d3c7;
+  --color-andean-negro: #2b2e31;
+  --color-andean-negro-50: #3d3d3c;
+
+  --color-cirqa-negro-200: #111111;
+  --color-cirqa-negro-100: #222222;
+  --color-cirqa-negro-50: #333333;
+  --color-cirqa-blanco: #ffffff;
+
+  --font-andean-canela: "Canela Regular", Georgia, serif;
+  --font-andean-everett: "Everett Light", Arial, Helvetica, sans-serif;
+  --font-andean-everett-regular: "Everett Regular", Arial, Helvetica, sans-serif;
+  --font-cirqa-arnopro: "Arno Pro", Georgia, serif;
+  --font-cirqa-arnopro-light: "Arno Pro Light", Georgia, serif;
+  --font-cirqa-carlito: "Carlito", Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --color-andean-crema-200: #e3d3c7;
+  --color-andean-crema-100: #f4f0ee;
+  --color-andean-crema-50: #f5f3f0;
+  --color-andean-crema-10: #f8f7f5;
+  --color-andean-negro: #2b2e31;
+  --color-andean-negro-50: #3d3d3c;
+  --font-andean-everett: "Everett Light", Arial, Helvetica, sans-serif;
+  --font-andean-canela: "Canela Regular", Georgia, serif;
+
+  --color-cirqa-negro-200: #111111;
+  --color-cirqa-negro-100: #222222;
+  --color-cirqa-negro-50: #333333;
+  --color-cirqa-blanco: #ffffff;
+  --font-cirqa-carlito: "Carlito", Arial, Helvetica, sans-serif;
+  --font-cirqa-arnopro: "Arno Pro", Georgia, serif;
+  --font-cirqa-arnopro-light: "Arno Pro Light", Georgia, serif;
+
+  --theme-heading-font: var(--font-andean-canela);
+  --theme-body-font: var(--font-andean-everett);
+  --theme-body-font-size: clamp(0.9rem, 1vw, 1.05rem);
+  --theme-body-line-height: 1.625;
+  --theme-btn-primary-bg: var(--color-andean-crema-200);
+  --theme-btn-primary-text: var(--color-andean-negro-50);
+  --theme-btn-primary-border: var(--color-andean-crema-200);
+  --theme-btn-primary-hover-bg: transparent;
+  --theme-btn-primary-hover-text: var(--color-andean-negro-50);
+  --theme-btn-primary-font: var(--font-andean-everett);
+  --theme-btn-secondary-bg: var(--color-andean-negro);
+  --theme-btn-secondary-text: #ffffff;
+  --theme-btn-secondary-border: var(--color-andean-negro);
+  --theme-btn-secondary-hover-bg: transparent;
+  --theme-btn-secondary-hover-text: var(--color-andean-negro);
+  --theme-btn-tertiary-bg: transparent;
+  --theme-btn-tertiary-text: var(--color-andean-negro-50);
+  --theme-btn-tertiary-border: color-mix(in srgb, var(--color-andean-negro) 50%, transparent);
+  --theme-btn-tertiary-hover-bg: var(--color-andean-crema-200);
+  --theme-btn-ghost-text: #ffffff;
+  --theme-btn-ghost-border: #ffffff;
+  --theme-btn-ghost-hover-text: var(--color-andean-negro-50);
+  --theme-btn-ghost-hover-bg: #ffffff;
+  --theme-footer-bg: #f1ece8;
+  --theme-footer-text: var(--color-andean-negro-50);
+  --theme-footer-title-font: var(--font-andean-canela);
+  --theme-popup-overlay-bg: rgba(0, 0, 0, 0.55);
+  --theme-popup-bg: #ffffff;
+  --theme-popup-text: var(--color-andean-negro-50);
+  --theme-booking-dropdown-bg: var(--color-andean-crema-200);
+  --theme-booking-dropdown-text: var(--color-andean-negro);
+}
+
+[data-hotel="cirqa"] {
+  --theme-heading-font: var(--font-cirqa-arnopro);
+  --theme-body-font: var(--font-cirqa-carlito);
+  --theme-connected-stays-title-font: var(--font-cirqa-arnopro);
+  --theme-connected-stays-text: var(--color-cirqa-blanco);
+  --theme-southern-bg: var(--color-cirqa-negro-50);
+  --theme-southern-text: var(--color-cirqa-blanco);
+  --theme-southern-title-font: var(--font-cirqa-arnopro-light);
+  --theme-btn-primary-bg: var(--color-cirqa-negro-50);
+  --theme-btn-primary-text: var(--color-cirqa-blanco);
+  --theme-btn-primary-border: var(--color-cirqa-negro-50);
+  --theme-btn-primary-hover-bg: color-mix(in srgb, var(--color-cirqa-blanco) 24%, transparent);
+  --theme-btn-primary-hover-text: var(--color-cirqa-negro-50);
+  --theme-btn-primary-font: var(--font-cirqa-arnopro);
+  --theme-btn-secondary-bg: var(--color-cirqa-blanco);
+  --theme-btn-secondary-text: var(--color-cirqa-negro-200);
+  --theme-btn-secondary-border: var(--color-cirqa-blanco);
+  --theme-btn-secondary-hover-bg: transparent;
+  --theme-btn-secondary-hover-text: var(--color-cirqa-blanco);
+  --theme-btn-tertiary-bg: var(--color-cirqa-blanco);
+  --theme-btn-tertiary-text: var(--color-cirqa-negro-200);
+  --theme-btn-tertiary-border: var(--color-cirqa-blanco);
+  --theme-btn-tertiary-hover-bg: var(--color-cirqa-negro-50);
+  --theme-btn-tertiary-hover-text: var(--color-cirqa-blanco);
+  --theme-btn-ghost-text: var(--color-cirqa-blanco);
+  --theme-btn-ghost-border: var(--color-cirqa-blanco);
+  --theme-btn-ghost-hover-text: var(--color-cirqa-blanco);
+  --theme-btn-ghost-hover-bg: color-mix(in srgb, var(--color-cirqa-negro-100) 80%, transparent);
+  --theme-footer-bg: var(--color-cirqa-negro-100);
+  --theme-footer-text: #f3eee1;
+  --theme-footer-title-font: var(--font-cirqa-arnopro);
+  --theme-popup-overlay-bg: color-mix(in srgb, var(--color-cirqa-negro-100) 85%, transparent);
+  --theme-popup-bg: var(--color-cirqa-negro-50);
+  --theme-popup-text: var(--color-cirqa-blanco);
+  --theme-popup-travel-agents-bg: var(--color-cirqa-negro-50);
+  --theme-popup-travel-agents-text: #f9f4ea;
+  --theme-popup-plan-your-stay-bg: #f9f8f4;
+  --theme-popup-plan-your-stay-text: var(--color-andean-negro-50);
+  --theme-popup-southern-bg: #f9f8f4;
+  --theme-popup-southern-text: var(--color-cirqa-negro-50);
+  --theme-booking-dropdown-bg: var(--color-cirqa-negro-50);
+  --theme-booking-dropdown-text: var(--color-cirqa-blanco);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--theme-body-font);
+  font-size: var(--theme-body-font-size);
+  line-height: var(--theme-body-line-height);
+  color: #333333;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+.font-heading {
+  font-family: var(--theme-heading-font);
+}
+
+.font-body {
+  font-family: var(--theme-body-font);
+}
+
+.paper-texture-gray {
+  background-image: url("/images/textures/clean-gray-paper.png");
+  background-repeat: repeat;
+}
+
+.paper-texture-rice {
+  background-image: url("/images/textures/rice-paper-2.webp");
+  background-repeat: repeat;
+}
+
+.btn-cirqa-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-cirqa-negro-50);
+  background-color: var(--color-cirqa-negro-50);
+  color: var(--color-cirqa-blanco);
+  font-family: var(--font-cirqa-arnopro);
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-cirqa-dark:hover {
+  background-color: transparent;
+  color: var(--color-cirqa-negro-50);
+}
+
+.btn-cirqa-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-cirqa-negro-50);
+  background-color: transparent;
+  color: var(--color-cirqa-negro-50);
+  font-family: var(--font-cirqa-arnopro);
+  letter-spacing: 0.04em;
+  padding: 0.7rem 1.75rem;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-cirqa-outline:hover {
+  background-color: var(--color-cirqa-negro-50);
+  color: var(--color-cirqa-blanco);
+}
+
+.btn-cirqa-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background-color: rgba(34, 34, 34, 0.55);
+  color: #ffffff;
+  font-family: var(--font-cirqa-arnopro);
+  letter-spacing: 0.04em;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.92rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-cirqa-ghost:hover {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.btn-cirqa-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  color: #111111;
+  font-family: var(--font-cirqa-arnopro);
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-cirqa-light:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.font-rooms-stencil {
+  font-family: var(--font-rooms-stencil), Georgia, serif;
+}
+
+.font-rooms-sans {
+  font-family: var(--font-rooms-sans), Arial, Helvetica, sans-serif;
+}
